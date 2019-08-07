@@ -4,9 +4,9 @@ This repository contains a compendium of useful feature extraction techniques I 
 
 # Techniques covered (aspirationally)
 ## Categorical
-One-shot encoding
+One-hot encoding
 
-Hashed one-shot encoding
+Hashed one-hot encoding
 
 Unique ID
 
@@ -24,9 +24,9 @@ Semantic embedding
 
 tf.idf
 
-Luduan terms
+Luduan terms *
 ## Numerical
-Binning
+Binning *
 
 Rounding
 
@@ -37,6 +37,8 @@ Day of week, Hour of day, Weekend/holiday indicators
 Quadrature encodings
 
 Distance to event
+
+Lagged features
 ## Geographical
 Pre-clustering
 
@@ -56,32 +58,51 @@ Luduan terms
 Semantic embeddings
 
 Glove
-https://nlp.stanford.edu/projects/glove/?source=post_page---------------------------
+https://nlp.stanford.edu/projects/glove/?source=post_page
 
 Indicator detection
 ## IP Address
 Reverse resolution
 
 CIDR
+
+CIDR prefix
+
 ## Missing Data
-As a special value
+As a special value (unknown word)
+
 Means
+
 Reverse model
+
 ## Consolidation
 Unknown word
+
 Stemming
-## Parsing
+
+## Parsing and Modeling
 User agent
+
 IP domains
+
 Email address
+
 Headers
+
 Referrer
+
+5P energy models
 ## Scaling
 Q scaling
+
 Z scaling
+
 Min-max scaling
+
 Log
 ## Cross modeling
 Other models
+
 Modeled structure
+
 Word2vec
