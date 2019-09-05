@@ -1,30 +1,30 @@
 # Categorical features
 There are many ways to transform a categorical variable with high cardinality. I will describe the following methods here:
 
-one-hot — the simplest of all techniques, very useful in a number of settings with low cardinality
+*one-hot* -- the simplest of all techniques, very useful in a number of settings with low cardinality
 
-rare-word tagging — this allows the cardinality to vary
+*rare-word tagging* -- this allows the cardinality to vary
 
-frequency binning — often of great use in anomaly detection, fraud prevention and intrusion detection
+*frequency binning* -- often of great use in anomaly detection, fraud prevention and intrusion detection
 
-random embedding — the grandparent of modern semantic embedding
+*random embedding* -- the grandparent of modern semantic embedding
 
-the hash trick — random embedding for people who like binary features
+*the hash trick* -- random embedding for people who like binary features
 
-Luduan features — how to encode operational structure efficiently by observing cooccurrence.
+*Luduan features* -- how to encode operational structure efficiently by observing cooccurrence.
 
 ## Background
 But before we get into all this too much, let’s settle some terminology. Let’s take “low cardinality” to be less than 10 or so, “medium cardinality” to be from 10 to 100, “high cardinality” to be 100 to 1000 and “ultra high cardinality” to be above 1000. These boundaries aren’t hard and fast and we should be willing to wiggle a bit on them. Some categorical variables are ordered (birth year) and some are not (car make). We should also keep in mind categorical variables where we do not know the full cardinality, be it low, medium, high or ultra high.
 
 Examples of features in these different cardinality ranges include:
 
-low cardinality — gender, rotation direction (CW or CCW), cardinal points (N, S, E, W, NE, etc), phone type (land line, cell, VOIP)
+*low cardinality* -- gender, rotation direction (CW or CCW), cardinal points (N, S, E, W, NE, etc), phone type (land line, cell, VOIP)
 
-medium cardinality — car make, telephone brand, key on keyboard, US state
+*medium cardinality* -- car make, telephone brand, key on keyboard, US state
 
-high cardinality — country of birth, birth year
+*high cardinality* -- country of birth, birth year
 
-ultra high cardinality — word from text, URL, domain name, IP address, post code
+*ultra high cardinality* -- word from text, URL, domain name, IP address, post code
 
 Examples of categorical variables where we can’t easily know the full cardinality with absolute certainty or where we might wish to allow for change might include brand names, countries and gender. Examples of categorical variables where the cardinality is not just not currently known, but is growing continually include domain names, IP addresses and words from text.
 
