@@ -32,7 +32,7 @@ There are lots of techniques and tricks for handling variables of this general c
 
 When the cardinality is not fixed or is simply not yet known, a different problem arises in that essentially all machine learning techniques want to deal with a fixed number of input variables. That means that we have to figure out some way to convert an unbounded kind of input into a strictly bounded number of inputs without losing information. With numerical features, we also have a large cardinality, but the mathematical structure of numbers such as distance and ordering usually allows us to treat such inputs much more simply. With true categorical values, we have to discover or impose this structure.
 
-# One-hot Encoding
+## One-hot Encoding
 
 In the simplest of all cases, we have low and fixed cardinality. In such a case, we can have a model feature for each possible value that the variable can take on and set all of these features to zero except for the one corresponding to the value of our categorical feature. This works great and is known as one-hot encoding. This might lead to encoding days of the week as Monday = (1,0,0,0,0,0,0), Tuesday = (0,1,0,0,0,0,0) and so on.
 
@@ -44,11 +44,25 @@ As the cardinality increases, however, this works less and less well, largely be
 
 We can take this idea of collapsing to a radical and surprisingly effective extreme. This is done by reducing a high cardinality categorical feature to a single number that represents the frequency of the value of the feature. Alternately, you might use the quantile of the rank of the frequency, or bin the frequency of the value. In any case, this works in applications where a specific value isn’t as important as the fact that you have seen a surprisingly rare value. Consider, network intrusion detection where suddenly seeing lots of data going to a previously almost unknown external network address could be very informative. It doesn’t really matter which previously unknown address is being used, just that it is previously unknown or nearly so. Note that you can combine this kind of frequency feature with other features as well so that you not only get these desirable novelty effects, but you can keep the precise resolution about exactly which categorical value was seen.
 
-## Random Embedding
+## Random Vector Embedding
 
 Another way to keep a fixed sized encoding with values of large or unknown cardinality without collapsing rare values together is to use a random embedding or projection. One simple way to do this is convert each possible value to a 50–300 dimensional vector. Commonly, these vectors will be constrained to have unit length You can actually do this in a consistent way without knowing the categorical values ahead of time by using the actual value as a seed for a random number generator and then using that generator to sample a “random” unit vector. If the dimension of the vector is high enough (say 100 to 500 dimensions or more) then the vectors corresponding to any two categorical values will be nearly orthogonal with high probability. This quasi-orthogonality of random vectors is very handy since it makes each different value be sufficiently different from all other values so that machine learning algorithms can pick out important structure.
 
 These random vectors can also be tuned somewhat using simple techniques to build a semantic space, or using more advanced techniques to get some very fancy results. Such random projections can be used to do linear algebraic decompositions as well.
+
+[1] Context Vectors: A Step Toward a “Grand Unified Representation”
+https://link.springer.com/chapter/10.1007/10719871_14
+
+[2] Word2Vec
+https://en.wikipedia.org/wiki/Word2vec
+
+[3] BERT word embeddings
+https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/
+
+[4] Finding structure with randomness: probabilistic algorithms for constructing approximate matrix decomposition
+https://arxiv.org/pdf/0909.4061.pdf
+
+
 
 ## The Hash Trick
 
@@ -57,3 +71,12 @@ We can use different random projections to get something much more like the one-
 ## Luduan Features
 
 Finally, you can derive a numerical features by grouping values that have anomalous correlation with some objective observation and then weighting by the underlying frequency of the feature value (or the inverse log of that frequency). This reduction is known as a Luduan feature and is based on the use of log-likelihood ratio tests for finding interesting cooccurrence. I gave a talk on using these techniques for transaction mining some time ago that described how to do this.
+
+[5] Finding Structure in Text, Genome and Other Symbolic Sequences
+https://arxiv.org/abs/1207.1847
+
+[6] Accurate Methods for the Statistics of Surprise and Coincidence
+https://aclweb.org/anthology/J93-1003
+
+[7] Mining Transactional Data
+https://www.slideshare.net/MapRTechnologies/transactional-data-mining-ted-dunning-2004
